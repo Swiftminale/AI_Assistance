@@ -65,6 +65,7 @@ export default function Home() {
       flexDirection="column"
       justifyContenet="center"
       alignItems="center"
+      p={2}
     >
       <Stack
         direction="column"
@@ -104,7 +105,12 @@ export default function Home() {
             </Box>
           ))}
         </Stack>
-        <Stack direction="row" spacing={2}>
+        <Stack
+          direction="row"
+          spacing={2}
+          display="flex"
+          justifyContent="flex-end"
+        >
           <TextField
             labled="message"
             fullwidth

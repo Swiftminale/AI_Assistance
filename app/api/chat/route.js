@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { OpenAI } from "openai";
 
 // Define the system prompt as a string
-const systemPrompt =
-  "Welcome to HeadstarteAI Customer Support!\n\nHow can I assist you today?";
+const systemPrompt = `"Welcome to HeadstarteAI Customer Support!\n\nHow can I assist you today?"`;
 
 export async function POST(req) {
   try {
-    const openai = new OpenAI();
+    const apiKey = process.env.OPENAI_API_KEY;
+    const openai = new OpenAI({ apiKey });
 
     // Parse request body
     const data = await req.json();
@@ -19,8 +19,8 @@ export async function POST(req) {
 
     // Make API call to OpenAI
     const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo", // or another current model
       messages: [{ role: "system", content: systemPrompt }, ...data],
-      model: "gpt-4o-mini",
       stream: true,
     });
 
