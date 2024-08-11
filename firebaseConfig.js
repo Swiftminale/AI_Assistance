@@ -25,7 +25,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Initialize Analytics
-const analytics = getAnalytics(app);
 
 // Export the necessary Firebase functions
 export { db, collection, addDoc, serverTimestamp, getDocs };
