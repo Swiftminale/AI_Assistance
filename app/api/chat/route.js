@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { OpenAI } from "openai";
 
 // Define the system prompt as a string
-const systemPrompt = `"Welcome to HeadstarteAI Customer Support!\n\nHow can I assist you today?"`;
+const systemPrompt =
+  "Welcome to HeadstarteAI Customer Support! How can I assist you today? Our team is here to help with any questions or issues you may have.";
 
 export async function POST(req) {
   try {
@@ -19,9 +20,10 @@ export async function POST(req) {
 
     // Make API call to OpenAI
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // or another current model
+      model: "gpt-3.5-turbo",
       messages: [{ role: "system", content: systemPrompt }, ...data],
       stream: true,
+      temperature: 0.5, // Adjusted temperature
     });
 
     // Create a readable stream from the completion response
